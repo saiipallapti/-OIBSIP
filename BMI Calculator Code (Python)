@@ -1,0 +1,38 @@
+def calculate_bmi(weight, height):
+    return weight / (height ** 2)
+
+def get_bmi_category(bmi):
+    if bmi < 18.5:
+        return "Underweight"
+    elif 18.5 <= bmi < 24.9:
+        return "Normal weight"
+    elif 25 <= bmi < 29.9:
+        return "Overweight"
+    else:
+        return "Obese"
+
+def get_valid_input(prompt, min_value, max_value):
+    while True:
+        try:
+            value = float(input(prompt))
+            if value < min_value or value > max_value:
+                print(f"Please enter a value between {min_value} and {max_value}.")
+            else:
+                return value
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+def main():
+    print("=== BMI Calculator ===")
+    
+    weight = get_valid_input("Enter your weight in kilograms (kg): ", 10, 300)
+    height = get_valid_input("Enter your height in meters (m): ", 0.5, 2.5)
+    
+    bmi = calculate_bmi(weight, height)
+    category = get_bmi_category(bmi)
+    
+    print(f"\nYour BMI is: {bmi:.2f}")
+    print(f"You are classified as: {category}")
+
+if __name__ == "__main__":
+    main()
